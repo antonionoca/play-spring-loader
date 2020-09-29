@@ -287,8 +287,7 @@ class BindingKeyFactoryBean[T](key: BindingKey[T], objectType: Class[_], factory
 
   private def getNameFromMatches(candidates: Seq[String]): Option[String] = {
     candidates match {
-      case Nil => throw new NoSuchBeanDefinitionException(key.clazz, "Binding alias for type " + objectType + " to " + key,
-        "No bean found for binding alias")
+      case Nil => throw new NoSuchBeanDefinitionException(key.clazz, "No bean found for binding alias for type " + objectType + " to " + key)
       case single :: Nil => Some(single)
       case multiple => throw new NoUniqueBeanDefinitionException(key.clazz, multiple.asJava)
     }
@@ -301,7 +300,7 @@ class BindingKeyFactoryBean[T](key: BindingKey[T], objectType: Class[_], factory
 
   def getObjectType = objectType
 
-  def isSingleton = false
+  override def isSingleton = false
 }
 
 /**
@@ -322,7 +321,7 @@ class ProviderFactoryBean[T](provider: Provider[T], objectType: Class[_], factor
 
   def getObjectType = objectType
 
-  def isSingleton = false
+  override def isSingleton = false
 }
 
 /**

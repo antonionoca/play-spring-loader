@@ -19,6 +19,7 @@ package com.lightbend.play.spring
 import play.api.inject.{ bind, _ }
 import play.api._
 import play.core.{ DefaultWebCommands, WebCommands }
+import play.Logger
 
 /**
  * A builder for creating Applications using Spring.

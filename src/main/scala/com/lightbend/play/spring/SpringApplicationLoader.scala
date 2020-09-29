@@ -65,11 +65,12 @@ private object SpringApplicationLoader {
     Seq(
       new Module {
         def bindings(environment: Environment, configuration: Configuration) = Seq(
+          bind[OptionalDevContext] to new OptionalDevContext(context.devContext),
           bind[OptionalSourceMapper] to new OptionalSourceMapper(context.sourceMapper),
-          bind[WebCommands] to context.webCommands,
           bind[Assets].to[Assets],
-          bind[play.Configuration].to[play.Configuration])
-      })
+          bind[play.api.Configuration] to configuration)
+      }
+    )
   }
 
 }
